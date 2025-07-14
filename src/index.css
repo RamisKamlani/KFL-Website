@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+body, html {
+  font-family: 'Clash Display', sans-serif;
+  scroll-behavior: smooth;
+  
+}
+
+body {
+  background: #e9f1f6;
+  font-family: 'Clash Display', sans-serif;
+}
