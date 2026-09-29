@@ -1,12 +1,83 @@
 @import "tailwindcss";
 
-body, html {
-  font-family: 'Clash Display', sans-serif;
+@theme {
+  --font-display: "Clash Display", system-ui, sans-serif;
+  --font-sans: "General Sans", system-ui, sans-serif;
+  --color-ink: #0d0909;
+  --color-panel: #181112;
+  --color-line: #ffffff14;
+  --color-paper: #f5efe8;
+  --color-muted: #ab9fa0;
+  --color-crimson: #e0263f;
+  --color-amber: #f7a928;
+}
+
+html {
   scroll-behavior: smooth;
-  
+  scroll-padding-top: 5rem;
+  color-scheme: dark;
+  scrollbar-color: #3a2a2c var(--color-ink);
 }
 
 body {
-  background: #e9f1f6;
-  font-family: 'Clash Display', sans-serif;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  caret-color: var(--color-crimson);
+}
+
+::selection {
+  background: var(--color-crimson);
+  color: #fff;
+}
+
+a {
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* final-day scores ticker: the page's one moving element */
+.ticker {
+  mask-image: linear-gradient(90deg, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
+}
+.ticker-track {
+  animation: ticker 40s linear infinite;
+}
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .ticker {
+    overflow-x: auto;
+  }
+  .ticker-track {
+    animation: none;
+  }
+  * {
+    transition: none !important;
+  }
 }
